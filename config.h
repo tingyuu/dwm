@@ -4,7 +4,7 @@ static int showsystray                   = 1;         /* 是否显示托盘栏 *
 static const int newclientathead         = 0;         /* 定义新窗口在栈顶还是栈底 */
 static const unsigned int borderpx       = 2;         /* 窗口边框大小 */
 static const unsigned int systraypinning = 1;         /* 托盘跟随的显示器 0代表不指定显示器 */
-static const unsigned int systrayspacing = 2;         /* 托盘间距 */
+static const unsigned int systrayspacing = 5;         /* 托盘间距 */
 static int gappi                         = 2;         /* 窗口与窗口 缝隙大小 */
 static int gappo                         = 2;         /* 窗口与边缘 缝隙大小 */
 static const int _gappo                  = 12;        /* 窗口与窗口 缝隙大小 不可变 用于恢复时的默认值 */
@@ -18,8 +18,8 @@ static const int   nmaster               = 1;         /* 主工作区 窗口数�
 static const unsigned int snap           = 10;        /* 边缘依附宽度 */
 static const unsigned int baralpha       = 0xc0;      /* 状态栏透明度 */
 static const unsigned int borderalpha    = 0xdd;      /* 边框透明度 */
-static const char *fonts[]               = { "JetBrainsMono Nerd Font:style=medium:size=10", "monospace:size=10" };
-static const char *colors[][3]           = { [SchemeNorm] = { "#bbbbbb", "#333333", "#444444" }, [SchemeSel] = { "#ffffff", "#37474F", "#42A5F5" }, [SchemeHid] = { "#dddddd", NULL, NULL }, [SchemeSystray] = { "#7799AA", "#7799AA", "#7799AA" }, [SchemeUnderline] = { "#7799AA", "#7799AA", "#7799AA" } };
+static const char *fonts[]               = { "JetBrainsMono Nerd Font:style=medium:size=8", "monospace:size=8" };
+static const char *colors[][3]           = { [SchemeNorm] = { "#bbbbbb", "#000000", "#444444" }, [SchemeSel] = { "#ffffff", "#37474F", "#42A5F5" }, [SchemeHid] = { "#dddddd", NULL, NULL }, [SchemeSystray] = { "#000000", "#000000", "#000000" }, [SchemeUnderline] = { "#7799AA", "#7799AA", "#7799AA" } };
 static const unsigned int alphas[][3]    = { [SchemeNorm] = { OPAQUE, baralpha, borderalpha }, [SchemeSel] = { OPAQUE, baralpha, borderalpha } };
 
 
@@ -39,7 +39,7 @@ static const Rule rules[] = {
     { NULL,                  NULL,                "图片查看",        0,            1,           0,        -1 },
     { NULL,                  NULL,                "图片预览",        0,            1,           0,        -1 },
     { NULL,                  NULL,                "crx_",            0,            1,           0,        -1 },
-    {"Microsoft-edge",               NULL,                 NULL,             1 << 9,       0,           0,        -1 },
+    {"Microsoft-edge",       NULL,                 NULL,             1 << 9,       0,           0,        -1 },
     {"Chromium",             NULL,                 NULL,             1 << 9,       0,           0,        -1 },
     {"float",                NULL,                 NULL,             0,            1,           0,        -1 },
     {"flameshot",            NULL,                 NULL,             0,            1,           0,        -1 },
