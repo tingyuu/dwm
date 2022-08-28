@@ -4,9 +4,9 @@ static int showsystray                   = 1;         /* 是否显示托盘栏 *
 static const int newclientathead         = 0;         /* 定义新窗口在栈顶还是栈底 */
 static const unsigned int borderpx       = 2;         /* 窗口边框大小 */
 static const unsigned int systraypinning = 1;         /* 托盘跟随的显示器 0代表不指定显示器 */
-static const unsigned int systrayspacing = 1;         /* 托盘间距 */
-static int gappi                         = 2;        /* 窗口与窗口 缝隙大小 */
-static int gappo                         = 2;        /* 窗口与边缘 缝隙大小 */
+static const unsigned int systrayspacing = 2;         /* 托盘间距 */
+static int gappi                         = 2;         /* 窗口与窗口 缝隙大小 */
+static int gappo                         = 2;         /* 窗口与边缘 缝隙大小 */
 static const int _gappo                  = 12;        /* 窗口与窗口 缝隙大小 不可变 用于恢复时的默认值 */
 static const int _gappi                  = 12;        /* 窗口与边缘 缝隙大小 不可变 用于恢复时的默认值 */
 static const int overviewgappi           = 10;        /* overview时 窗口与边缘 缝隙大小 */
@@ -49,7 +49,7 @@ static const Layout overviewlayout = { "",  overview };
 
 /* 自定义布局 */
 static const Layout layouts[] = {
-    { "﬿",  tile },         /* 主次栈 */
+    { "﬿",  tile },          /* 主次栈 */
     { "﩯",  magicgrid },    /* 网格 */
 };
 
@@ -61,8 +61,8 @@ static const Layout layouts[] = {
     { MODKEY|ControlMask,  KEY, toggleview, {.ui = 1 << TAG} }, \
 
 
-static const char *rofi[] = {"rofi","-show","drun"};
-static const char *termcmd[] = {"st", NULL};
+static const char *rofi[]    = {"rofi","-show","drun"};
+static const char *termcmd[] = {"xfce4-terminal", NULL};
 
 
 static Key keys[] = {
