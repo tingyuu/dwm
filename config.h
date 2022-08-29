@@ -26,22 +26,17 @@ static const unsigned int alphas[][3]    = { [SchemeNorm] = { OPAQUE, baralpha, 
 /* 自定义tag名称 */
 /* 自定义特定实例的显示状态 */
 //            ﮸ 
-static const char *tags[] = { "", "", "", "", "", "", "", "", "", "", "", "ﬄ", "﬐", "" };
+static const char *tags[] = { "", "", "", "", "", "", "", "", "", "", "", "﬐", "" };
 static const Rule rules[] = {
     /* class                 instance              title             tags mask     isfloating   noborder  monitor */
-    {"netease-cloud-music",  NULL,                 NULL,             1 << 10,      1,           0,        -1 },
-    {"music",                NULL,                 NULL,             1 << 10,      1,           1,        -1 },
     {"lx-music-desktop",     NULL,                 NULL,             1 << 10,      1,           1,        -1 },
-    { NULL,                 "tim.exe",             NULL,             1 << 11,      0,           0,        -1 },
-    { NULL,                 "wechat.exe",          NULL,             1 << 12,      0,           0,        -1 },
-    { NULL,                 "wxwork.exe",          NULL,             1 << 13,      0,           0,        -1 },
+    { NULL,                 "wechat.exe",          NULL,             1 << 11,      0,           0,        -1 },
+    { NULL,                 "wxwork.exe",          NULL,             1 << 12,      0,           0,        -1 },
     { NULL,                  NULL,                "broken",          0,            1,           0,        -1 },
     { NULL,                  NULL,                "图片查看",        0,            1,           0,        -1 },
     { NULL,                  NULL,                "图片预览",        0,            1,           0,        -1 },
-    { NULL,                  NULL,                "crx_",            0,            1,           0,        -1 },
     {"Microsoft-edge",       NULL,                 NULL,             1 << 9,       0,           0,        -1 },
     {"Chromium",             NULL,                 NULL,             1 << 9,       0,           0,        -1 },
-    {"float",                NULL,                 NULL,             0,            1,           0,        -1 },
     {"flameshot",            NULL,                 NULL,             0,            1,           0,        -1 },
 };
 static const char *overviewtag = "OVERVIEW";
@@ -59,11 +54,6 @@ static const Layout layouts[] = {
     { MODKEY,              KEY, view,       {.ui = 1 << TAG, .v = cmd1} }, \
     { MODKEY|ShiftMask,    KEY, tag,        {.ui = 1 << TAG, .v = cmd2} }, \
     { MODKEY|ControlMask,  KEY, toggleview, {.ui = 1 << TAG} }, \
-
-
-static const char *rofi[]    = {"rofi","-show","drun"};
-static const char *termcmd[] = {"xfce4-terminal", NULL};
-
 
 static Key keys[] = {
     /* modifier            key              function          argument */
@@ -118,21 +108,13 @@ static Key keys[] = {
     { MODKEY|Mod1Mask,     XK_Right,        resizewin,        {.ui = H_EXPAND} },        /* super ctrl right   |  调整窗口 */
 
     /* spawn + SHCMD 执行对应命令 */
-    { MODKEY|ShiftMask,    XK_q,            spawn,            SHCMD("~/scripts/app-starter.sh killw") },
-    { MODKEY,              XK_minus,        spawn,            SHCMD("~/scripts/app-starter.sh fst") },
-    { MODKEY,              XK_Return,       spawn,            {.v = termcmd } },
-    { MODKEY|ShiftMask,    XK_a,            spawn,            SHCMD("~/scripts/app-starter.sh flameshot") },
-    { MODKEY,              XK_d,            spawn,            {.v = rofi } },
-    { MODKEY,              XK_space,        spawn,            SHCMD("~/scripts/app-starter.sh rofi_window") },
-    { MODKEY,              XK_p,            spawn,            SHCMD("~/scripts/app-starter.sh rofi_p") },
-    { MODKEY|ShiftMask,    XK_k,            spawn,            SHCMD("~/scripts/app-starter.sh screenkey") },
-    { MODKEY,              XK_k,            spawn,            SHCMD("~/scripts/app-starter.sh blurlock") },
-    { MODKEY,              XK_F1,           spawn,            SHCMD("~/scripts/app-starter.sh filemanager") },
-    { MODKEY|ShiftMask,    XK_Up,           spawn,            SHCMD("~/scripts/app-starter.sh set_vol up &") },
-    { MODKEY|ShiftMask,    XK_Down,         spawn,            SHCMD("~/scripts/app-starter.sh set_vol down &") },
-    { MODKEY,              XK_j,            spawn,            SHCMD("~/scripts/app-starter.sh robot") },
-    { MODKEY|ShiftMask,    XK_j,            spawn,            SHCMD("~/scripts/app-starter.sh robot onlyclick") },
-    { ShiftMask|ControlMask, XK_c,          spawn,            SHCMD("xclip -o | xclip -selection c") },
+    { MODKEY,              XK_Return,       spawn,            SHCMD("~/dwm/scripts/app-starter.sh terminal") },
+    { MODKEY|ShiftMask,    XK_a,            spawn,            SHCMD("~/dwm/scripts/app-starter.sh flameshot") },
+    { MODKEY,              XK_p,            spawn,            SHCMD("~/dwm/scripts/app-starter.sh menu") },
+    { MODKEY,              XK_k,            spawn,            SHCMD("~/dwm/scripts/app-starter.sh screenkey") },
+    { MODKEY,              XK_l,            spawn,            SHCMD("~/dwm/scripts/app-starter.sh lock") },
+    { MODKEY|ShiftMask,    XK_Up,           spawn,            SHCMD("~/dwm/scripts/app-starter.sh set_vol up &") },
+    { MODKEY|ShiftMask,    XK_Down,         spawn,            SHCMD("~/dwm/scripts/app-starter.sh set_vol down &") },
 
     /* super key : 跳转到对应tag */
     /* super shift key : 将聚焦窗口移动到对应tag */
@@ -147,19 +129,18 @@ static Key keys[] = {
     TAGKEYS(XK_7, 6,  0,  0)
     TAGKEYS(XK_8, 7,  0,  0)
     TAGKEYS(XK_9, 8,  0,  0)
-    TAGKEYS(XK_c, 9,  "~/scripts/app-starter.sh chrome",  "~/scripts/app-starter.sh chrome")
-    TAGKEYS(XK_m, 10, "~/scripts/app-starter.sh music",   "~/scripts/app-starter.sh pavucontrol")
-    TAGKEYS(XK_0, 11, "~/scripts/app-starter.sh tim",     "~/scripts/app-starter.sh tim")
-    TAGKEYS(XK_w, 12, "~/scripts/app-starter.sh wechat",  "~/scripts/app-starter.sh wechat")
-    TAGKEYS(XK_l, 13, "~/scripts/app-starter.sh wxwork",  "~/scripts/app-starter.sh wxwork")
+    TAGKEYS(XK_c, 9,  "~/dwm/scripts/app-starter.sh chrome",    "~/dwm/scripts/app-starter.sh chrome")
+    TAGKEYS(XK_m, 10, "~/dwm/scripts/app-starter.sh music",     "~/dwm/scripts/app-starter.sh pavucontrol")
+    TAGKEYS(XK_w, 11, "~/dwm/scripts/app-starter.sh wechat",    "~/dwm/scripts/app-starter.sh wechat")
+    TAGKEYS(XK_d, 12, "~/dwm/scripts/app-starter.sh dingtalk",  "~/dwm/scripts/app-starter.sh dingtalk")
 };
 static Button buttons[] = {
     /* click               event mask       button            function       argument  */
-	{ ClkStatusText,       0,               Button1,          spawn,         SHCMD("~/scripts/app-starter.sh fst") }, // 左键        |  点击状态栏   |  打开float st
+    { ClkStatusText,       0,               Button1,          spawn,         SHCMD("~/scripts/app-starter.sh terminal") }, // 左键        |  点击状态栏   |  打开float st
     { ClkWinTitle,         0,               Button1,          hideotherwins, {0} },                                   // 左键        |  点击标题     |  隐藏其他窗口仅保留该窗口
     { ClkWinTitle,         0,               Button3,          togglewin,     {0} },                                   // 右键        |  点击标题     |  切换窗口显示状态
     { ClkTagBar,           0,               Button1,          view,          {0} },                                   // 左键        |  点击tag      |  切换tag
-	{ ClkTagBar,           0,               Button3,          toggleview,    {0} },                                   // 右键        |  点击tag      |  切换是否显示tag
+    { ClkTagBar,           0,               Button3,          toggleview,    {0} },                                   // 右键        |  点击tag      |  切换是否显示tag
     { ClkClientWin,        MODKEY,          Button1,          movemouse,     {0} },                                   // super+左键  |  拖拽窗口     |  拖拽窗口
     { ClkClientWin,        MODKEY,          Button3,          resizemouse,   {0} },                                   // super+右键  |  拖拽窗口     |  改变窗口大小
     { ClkTagBar,           MODKEY,          Button1,          tag,           {0} },                                   // super+左键  |  点击tag      |  将窗口移动到对应tag
