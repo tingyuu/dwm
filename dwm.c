@@ -176,7 +176,7 @@ struct Systray {
 };
 
 /* function declarations */
-static void logtofile(const char *format, ...);
+// static void logtofile(const char *format, ...);
 
 static void tile(Monitor *m);
 static void magicgrid(Monitor *m);
@@ -382,21 +382,21 @@ struct Pertag {
 };
 
 /* function implementations */
-void
-logtofile(const char *format, ...)
-{
-    va_list args;
-    const char *args1;
-    va_start(args, format);
-    args1 = va_arg(args,const char *);
-    va_end(args);
-
-    char log [100];
-    char cmd [150];
-    sprintf(log, format, args1);
-    sprintf(cmd, "echo '%s' >> ~/log", log);
-    system(cmd);
-}
+//void
+//logtofile(const char *format, ...)
+//{
+//    va_list args;
+//    const char *args1;
+//    va_start(args, format);
+//    args1 = va_arg(args,const char *);
+//    va_end(args);
+//
+//    char log [100];
+//    char cmd [150];
+//    sprintf(log, format, args1);
+//    sprintf(cmd, "echo '%s' >> ~/log", log);
+//    system(cmd);
+//}
 
 void
 applyrules(Client *c)
@@ -943,7 +943,7 @@ void
 drawbar(Monitor *m)
 {
     int x, w, empty_w;
-    int tags_w = 0, system_w = 0, tasks_w = 0, status_w, lts_w;
+    int system_w = 0, tasks_w = 0, status_w;
     unsigned int i, occ = 0, n = 0, urg = 0, scm;
     Client *c;
 	int boxw = 2;
@@ -996,7 +996,7 @@ drawbar(Monitor *m)
     }
 
     // 绘制模式图标
-    lts_w = w = blw = TEXTW(m->ltsymbol);
+    w = blw = TEXTW(m->ltsymbol);
     drw_setscheme(drw, scheme[SchemeNorm]);
     x = drw_text(drw, x, 0, w, bh, lrpad / 2, m->ltsymbol, 0);
 
@@ -2532,7 +2532,7 @@ hidewin(const Arg *arg) {
 int
 issinglewin(const Arg *arg) {
     Client *c = NULL;
-    int cot = 0, tag = selmon->tagset[selmon->seltags];
+    int cot = 0;
 
     for (c = selmon->clients; c; c = c->next) {
         if (ISVISIBLE(c) && !HIDDEN(c))
@@ -3185,7 +3185,7 @@ grid(Monitor *m, uint gappo, uint gappi)
 	cw = (m->ww - 2 * gappo - (cols - 1) * gappi) / cols;
 
     overcols = n % cols;
-    if (overcols)
+    if (overcols) {
         dx = (m->ww - overcols * cw - (overcols - 1) * gappi) / 2 - gappo;
 	for(i = 0, c = nexttiled(m->clients); c; c = nexttiled(c->next), i++) {
         cx = m->wx + (i % cols) * (cw + gappi);
@@ -3200,6 +3200,7 @@ grid(Monitor *m, uint gappo, uint gappi)
                ch - 2 * c->bw,
                0);
 	}
+    }
 }
 
 Client *
