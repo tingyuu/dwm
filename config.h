@@ -1,26 +1,27 @@
 #include <X11/XF86keysym.h>
 
-static int showsystray                   = 1;         /* 是否显示托盘栏 */
-static const int newclientathead         = 0;         /* 定义新窗口在栈顶还是栈底 */
-static const unsigned int borderpx       = 2;         /* 窗口边框大小 */
-static const unsigned int systraypinning = 1;         /* 托盘跟随的显示器 0代表不指定显示器 */
-static const unsigned int systrayspacing = 5;         /* 托盘间距 */
-static int gappi                         = 2;         /* 窗口与窗口 缝隙大小 */
-static int gappo                         = 2;         /* 窗口与边缘 缝隙大小 */
-static const int _gappo                  = 12;        /* 窗口与窗口 缝隙大小 不可变 用于恢复时的默认值 */
-static const int _gappi                  = 12;        /* 窗口与边缘 缝隙大小 不可变 用于恢复时的默认值 */
-static const int overviewgappi           = 10;        /* overview时 窗口与边缘 缝隙大小 */
-static const int overviewgappo           = 20;        /* overview时 窗口与窗口 缝隙大小 */
-static const int showbar                 = 1;         /* 是否显示状态栏 */
-static const int topbar                  = 1;         /* 指定状态栏位置 0底部 1顶部 */
-static const float mfact                 = 0.55;       /* 主工作区 大小比例 */
-static const int   nmaster               = 1;         /* 主工作区 窗口数量 */
-static const unsigned int snap           = 10;        /* 边缘依附宽度 */
-static const unsigned int baralpha       = 0xc0;      /* 状态栏透明度 */
-static const unsigned int borderalpha    = 0xdd;      /* 边框透明度 */
-static const char *fonts[]               = { "JetBrainsMono Nerd Font:style=medium:size=11", "monospace:size=11" };
-static const char *colors[][3]           = { [SchemeNorm] = { "#bbbbbb", "#000000", "#444444" }, [SchemeSel] = { "#ffffff", "#37474F", "#42A5F5" }, [SchemeHid] = { "#dddddd", NULL, NULL }, [SchemeSystray] = { "#000000", "#000000", "#000000" }, [SchemeUnderline] = { "#7799AA", "#7799AA", "#7799AA" } };
-static const unsigned int alphas[][3]    = { [SchemeNorm] = { OPAQUE, baralpha, borderalpha }, [SchemeSel] = { OPAQUE, baralpha, borderalpha } };
+static int showsystray                     = 1;         /* 是否显示托盘栏 */
+static const int newclientathead           = 0;         /* 定义新窗口在栈顶还是栈底 */
+static const unsigned int borderpx         = 2;         /* 窗口边框大小 */
+static const unsigned int systraypinning   = 1;         /* 托盘跟随的显示器 0代表不指定显示器 */
+static const unsigned int systrayspacing   = 2;         /* 托盘间距 */
+static const unsigned int systrayiconsize  = 16;        /* 托盘图标大小 单位px */
+static int gappi                           = 2;         /* 窗口与窗口 缝隙大小 */
+static int gappo                           = 2;         /* 窗口与边缘 缝隙大小 */
+static const int _gappo                    = 12;        /* 窗口与窗口 缝隙大小 不可变 用于恢复时的默认值 */
+static const int _gappi                    = 12;        /* 窗口与边缘 缝隙大小 不可变 用于恢复时的默认值 */
+static const int overviewgappi             = 10;        /* overview时 窗口与边缘 缝隙大小 */
+static const int overviewgappo             = 20;        /* overview时 窗口与窗口 缝隙大小 */
+static const int showbar                   = 1;         /* 是否显示状态栏 */
+static const int topbar                    = 1;         /* 指定状态栏位置 0底部 1顶部 */
+static const float mfact                   = 0.55;      /* 主工作区 大小比例 */
+static const int nmaster                   = 1;         /* 主工作区 窗口数量 */
+static const unsigned int snap             = 10;        /* 边缘依附宽度 */
+static const unsigned int baralpha         = 0xc0;      /* 状态栏透明度 */
+static const unsigned int borderalpha      = 0xdd;      /* 边框透明度 */
+static const char *fonts[]                 = { "JetBrainsMono Nerd Font:style=medium:size=11", "monospace:size=11" };
+static const char *colors[][3]             = { [SchemeNorm] = { "#bbbbbb", "#000000", "#444444" }, [SchemeSel] = { "#ffffff", "#37474F", "#42A5F5" }, [SchemeHid] = { "#dddddd", NULL, NULL }, [SchemeSystray] = { "#000000", "#000000", "#000000" }, [SchemeUnderline] = { "#7799AA", "#7799AA", "#7799AA" } };
+static const unsigned int alphas[][3]      = { [SchemeNorm] = { OPAQUE, baralpha, borderalpha }, [SchemeSel] = { OPAQUE, baralpha, borderalpha } };
 
 
 /* 自定义tag名称 */
@@ -90,8 +91,8 @@ static Key keys[] = {
     { MODKEY,              XK_q,            killclient,       {0} },                     /* super q            |  关闭窗口 */
     { MODKEY|ControlMask,  XK_F12,          quit,             {0} },                     /* super ctrl f12     |  退出dwm */
 
-	{ MODKEY|ShiftMask,    XK_space,        selectlayout,     {.v = &layouts[1]} },      /* super shift space  |  切换到网格布局 */
-	{ MODKEY,              XK_o,            showonlyorall,    {0} },                     /* super o            |  切换 只显示一个窗口 / 全部显示 */
+    { MODKEY|ShiftMask,    XK_space,        selectlayout,     {.v = &layouts[1]} },      /* super shift space  |  切换到网格布局 */
+    { MODKEY,              XK_o,            showonlyorall,    {0} },                     /* super o            |  切换 只显示一个窗口 / 全部显示 */
 
     { MODKEY|ControlMask,  XK_equal,        setgap,           {.i = -6} },               /* super ctrl up      |  窗口增大 */
     { MODKEY|ControlMask,  XK_minus,        setgap,           {.i = +6} },               /* super ctrl down    |  窗口减小 */
@@ -136,7 +137,7 @@ static Key keys[] = {
 };
 static Button buttons[] = {
     /* click               event mask       button            function       argument  */
-    { ClkStatusText,       0,               Button1,          spawn,         SHCMD("~/scripts/app-starter.sh terminal") }, // 左键        |  点击状态栏   |  打开float st
+    { ClkStatusText,       0,               Button1,          spawn,         SHCMD("~/dwm/scripts/app-starter.sh terminal") }, // 左键        |  点击状态栏   |  打开float st
     { ClkWinTitle,         0,               Button1,          hideotherwins, {0} },                                   // 左键        |  点击标题     |  隐藏其他窗口仅保留该窗口
     { ClkWinTitle,         0,               Button3,          togglewin,     {0} },                                   // 右键        |  点击标题     |  切换窗口显示状态
     { ClkTagBar,           0,               Button1,          view,          {0} },                                   // 左键        |  点击tag      |  切换tag

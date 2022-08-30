@@ -1,7 +1,7 @@
 #!/bin/sh
 
 while true; do
-   xsetroot -name "$(date +"%F %R")"
+   xsetroot -name "$(date +"%F %R  ")"
    sleep 1m    # Update time every minute
 done &
 xrandr -s 1440x900 &
