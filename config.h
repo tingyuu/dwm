@@ -38,6 +38,7 @@ static const Rule rules[] = {
     { NULL,                  NULL,                "图片预览",        0,            1,           0,        -1 },
     {"Microsoft-edge",       NULL,                 NULL,             1 << 9,       0,           0,        -1 },
     {"Code",                 NULL,                 NULL,             1 << 10,      0,           0,        -1 },
+    {"AppRun",               NULL,                 NULL,             1 << 11,      1,           1,        -1 }, // 此处是navicat
     {"flameshot",            NULL,                 NULL,             0,            1,           0,        -1 },
 };
 static const char *overviewtag = "OVERVIEW";
