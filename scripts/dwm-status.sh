@@ -6,7 +6,7 @@ s2d_fg="^c"
 s2d_bg="^b"
 
 print_cpu() {
-    cpu_icon="閭"
+    cpu_icon=""
     cpu_text=$(top -n 1 -b | sed -n '3p' | awk '{printf "%02d%", 100 - $8}')
 
     text=" $cpu_icon $cpu_text "
@@ -19,7 +19,7 @@ print_mem() {
     mem_buffers=$(cat /proc/meminfo | grep "Buffers:"|awk '{print $2}')
     mem_cached=$(cat /proc/meminfo | grep -w "Cached:"|awk '{print $2}')
     men_usage_rate=$(((mem_total - mem_free - mem_buffers - mem_cached) * 100 / mem_total))
-	mem_icon=""
+	mem_icon="ﲭ"
     mem_text=$(echo $men_usage_rate | awk '{printf "%02d%", $1}')
     text=" $mem_icon $mem_text "
     printf "%s%s%s" "$text" "$s2d_reset"
@@ -91,4 +91,4 @@ print_bat() {
 }
 
 # xsetroot -name "$(print_others)$(print_cpu)$(print_mem)$(print_time)$(print_vol)$(print_bat)"
-xsetroot -name "$(print_others )$(print_cpu )$(print_mem )$(print_time )$(print_vol)"
+xsetroot -name "$(print_cpu )$(print_mem )$(print_time )$(print_vol)"

@@ -2,12 +2,12 @@
 
 if [ $1 == "menu" ]
 then
-	rofi -show drun
+	rofi -show drun -theme mine -show-icons
 fi
 
 if [ $1 == "terminal" ]
 then
-	xfce4-terminal
+	alacritty
 fi
 
 if [ $1 == "chrome" ]
@@ -38,4 +38,9 @@ fi
 if [ $1 == "wechat" ]
 then
 	/opt/apps/com.qq.weixin.deepin/files/run.sh
+fi
+
+if [ $1 == "lock" ]
+then
+	i3lock
 fi

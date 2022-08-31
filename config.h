@@ -19,7 +19,7 @@ static const int nmaster                   = 1;         /* 主工作区 窗口�
 static const unsigned int snap             = 10;        /* 边缘依附宽度 */
 static const unsigned int baralpha         = 0xc0;      /* 状态栏透明度 */
 static const unsigned int borderalpha      = 0xdd;      /* 边框透明度 */
-static const char *fonts[]                 = { "JetBrainsMono Nerd Font:style=medium:size=10", "monospace:size=11" };
+static const char *fonts[]                 = { "JetBrainsMono Nerd Font:style=medium:size=12", "monospace:size=12" };
 static const char *colors[][3]             = { [SchemeNorm] = { "#bbbbbb", "#000000", "#444444" }, [SchemeSel] = { "#ffffff", "#37474F", "#42A5F5" }, [SchemeHid] = { "#dddddd", NULL, NULL }, [SchemeSystray] = { "#000000", "#000000", "#000000" }, [SchemeUnderline] = { "#7799AA", "#7799AA", "#7799AA" } };
 static const unsigned int alphas[][3]      = { [SchemeNorm] = { OPAQUE, baralpha, borderalpha }, [SchemeSel] = { OPAQUE, baralpha, borderalpha } };
 
@@ -27,12 +27,13 @@ static const unsigned int alphas[][3]      = { [SchemeNorm] = { OPAQUE, baralpha
 /* 自定义tag名称 */
 /* 自定义特定实例的显示状态 */
 //            ﮸ 
-static const char *tags[] = { "", "", "", "", "", "", "", "", "", "", "", "", "", "﬐", "" };
+static const char *tags[] = { "", "", "", "", "", "", "", "", "", "", "", "", "", "﬐", "" };
 static const Rule rules[] = {
     /* class                 instance              title             tags mask     isfloating   noborder  monitor */
+    { NULL,                  NULL,                 NULL,             2,            1,           0,        -1 },
     {"lx-music-desktop",     NULL,                 NULL,             1 << 12,      1,           1,        -1 },
-    { NULL,                 "wechat.exe",          NULL,             1 << 13,      1,           0,        -1 },
-    { "dingtalk",            NULL,                 NULL,             1 << 14,      1,           0,        -1 },
+    { NULL,                 "wechat.exe",          NULL,             1 << 13,      1,           1,        -1 },
+    { "dingtalk",            NULL,                 NULL,             1 << 14,      1,           1,        -1 },
     { NULL,                  NULL,                "broken",          0,            1,           0,        -1 },
     { NULL,                  NULL,                "图片查看",        0,            1,           0,        -1 },
     { NULL,                  NULL,                "图片预览",        0,            1,           0,        -1 },
