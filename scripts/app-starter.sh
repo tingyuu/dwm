@@ -30,4 +30,12 @@ then
 	flameshot gui
 fi
 
+if [ $1 == "vscode" ]
+then
+	/usr/bin/code
+fi
 
+if [ $1 == "wechat" ]
+then
+	/opt/apps/com.qq.weixin.deepin/files/run.sh
+fi

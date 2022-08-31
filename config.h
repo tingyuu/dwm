@@ -19,7 +19,7 @@ static const int nmaster                   = 1;         /* 主工作区 窗口�
 static const unsigned int snap             = 10;        /* 边缘依附宽度 */
 static const unsigned int baralpha         = 0xc0;      /* 状态栏透明度 */
 static const unsigned int borderalpha      = 0xdd;      /* 边框透明度 */
-static const char *fonts[]                 = { "JetBrainsMono Nerd Font:style=medium:size=11", "monospace:size=11" };
+static const char *fonts[]                 = { "JetBrainsMono Nerd Font:style=medium:size=10", "monospace:size=11" };
 static const char *colors[][3]             = { [SchemeNorm] = { "#bbbbbb", "#000000", "#444444" }, [SchemeSel] = { "#ffffff", "#37474F", "#42A5F5" }, [SchemeHid] = { "#dddddd", NULL, NULL }, [SchemeSystray] = { "#000000", "#000000", "#000000" }, [SchemeUnderline] = { "#7799AA", "#7799AA", "#7799AA" } };
 static const unsigned int alphas[][3]      = { [SchemeNorm] = { OPAQUE, baralpha, borderalpha }, [SchemeSel] = { OPAQUE, baralpha, borderalpha } };
 
@@ -27,17 +27,17 @@ static const unsigned int alphas[][3]      = { [SchemeNorm] = { OPAQUE, baralpha
 /* 自定义tag名称 */
 /* 自定义特定实例的显示状态 */
 //            ﮸ 
-static const char *tags[] = { "", "", "", "", "", "", "", "", "", "", "", "﬐", "" };
+static const char *tags[] = { "", "", "", "", "", "", "", "", "", "", "", "", "", "﬐", "" };
 static const Rule rules[] = {
     /* class                 instance              title             tags mask     isfloating   noborder  monitor */
-    {"lx-music-desktop",     NULL,                 NULL,             1 << 10,      1,           1,        -1 },
-    { NULL,                 "wechat.exe",          NULL,             1 << 11,      0,           0,        -1 },
-    { NULL,                 "wxwork.exe",          NULL,             1 << 12,      0,           0,        -1 },
+    {"lx-music-desktop",     NULL,                 NULL,             1 << 12,      1,           1,        -1 },
+    { NULL,                 "wechat.exe",          NULL,             1 << 13,      1,           0,        -1 },
+    { "dingtalk",            NULL,                 NULL,             1 << 14,      1,           0,        -1 },
     { NULL,                  NULL,                "broken",          0,            1,           0,        -1 },
     { NULL,                  NULL,                "图片查看",        0,            1,           0,        -1 },
     { NULL,                  NULL,                "图片预览",        0,            1,           0,        -1 },
     {"Microsoft-edge",       NULL,                 NULL,             1 << 9,       0,           0,        -1 },
-    {"Chromium",             NULL,                 NULL,             1 << 9,       0,           0,        -1 },
+    {"Code",                 NULL,                 NULL,             1 << 10,      0,           0,        -1 },
     {"flameshot",            NULL,                 NULL,             0,            1,           0,        -1 },
 };
 static const char *overviewtag = "OVERVIEW";
@@ -131,13 +131,15 @@ static Key keys[] = {
     TAGKEYS(XK_8, 7,  0,  0)
     TAGKEYS(XK_9, 8,  0,  0)
     TAGKEYS(XK_c, 9,  "~/dwm/scripts/app-starter.sh chrome",    "~/dwm/scripts/app-starter.sh chrome")
-    TAGKEYS(XK_m, 10, "~/dwm/scripts/app-starter.sh music",     "~/dwm/scripts/app-starter.sh pavucontrol")
-    TAGKEYS(XK_w, 11, "~/dwm/scripts/app-starter.sh wechat",    "~/dwm/scripts/app-starter.sh wechat")
-    TAGKEYS(XK_d, 12, "~/dwm/scripts/app-starter.sh dingtalk",  "~/dwm/scripts/app-starter.sh dingtalk")
+    TAGKEYS(XK_g, 10,  "~/dwm/scripts/app-starter.sh vscode",   "~/dwm/scripts/app-starter.sh vscode")
+    TAGKEYS(XK_n, 11,  "~/dwm/scripts/app-starter.sh navicat",  "~/dwm/scripts/app-starter.sh navicat")
+    TAGKEYS(XK_m, 12, "~/dwm/scripts/app-starter.sh music",     "~/dwm/scripts/app-starter.sh pavucontrol")
+    TAGKEYS(XK_w, 13, "~/dwm/scripts/app-starter.sh wechat",    "~/dwm/scripts/app-starter.sh wechat")
+    TAGKEYS(XK_d, 14, "~/dwm/scripts/app-starter.sh dingtalk",  "~/dwm/scripts/app-starter.sh dingtalk")
 };
 static Button buttons[] = {
     /* click               event mask       button            function       argument  */
-    { ClkStatusText,       0,               Button1,          spawn,         SHCMD("~/dwm/scripts/app-starter.sh terminal") }, // 左键        |  点击状态栏   |  打开float st
+   // { ClkStatusText,       0,               Button1,          spawn,         SHCMD("~/dwm/scripts/app-starter.sh terminal") }, // 左键        |  点击状态栏   |  打开float st
     { ClkWinTitle,         0,               Button1,          hideotherwins, {0} },                                   // 左键        |  点击标题     |  隐藏其他窗口仅保留该窗口
     { ClkWinTitle,         0,               Button3,          togglewin,     {0} },                                   // 右键        |  点击标题     |  切换窗口显示状态
     { ClkTagBar,           0,               Button1,          view,          {0} },                                   // 左键        |  点击tag      |  切换tag
