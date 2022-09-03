@@ -20,7 +20,7 @@ static const unsigned int snap             = 10;        /* 边缘依附宽度 */
 static const unsigned int baralpha         = 0xc0;      /* 状态栏透明度 */
 static const unsigned int borderalpha      = 0xdd;      /* 边框透明度 */
 static const char *fonts[]                 = { "JetBrainsMono Nerd Font:style=medium:size=12", "monospace:size=12" };
-static const char *colors[][3]             = { [SchemeNorm] = { "#bbbbbb", "#000000", "#444444" }, [SchemeSel] = { "#ffffff", "#37474F", "#42A5F5" }, [SchemeHid] = { "#dddddd", NULL, NULL }, [SchemeSystray] = { "#000000", "#000000", "#000000" }, [SchemeUnderline] = { "#7799AA", "#7799AA", "#7799AA" } };
+static const char *colors[][3]             = { [SchemeNorm] = { "#bbbbbb", "#000000", "#444444" }, [SchemeSel] = { "#ffffff", "#37474F", "#42A5F5" }, [SchemeHid] = { "#dddddd", "#000000", NULL }, [SchemeSystray] = { "#000000", "#000000", "#000000" }, [SchemeUnderline] = { "#7799AA", "#7799AA", "#7799AA" } };
 static const unsigned int alphas[][3]      = { [SchemeNorm] = { OPAQUE, baralpha, borderalpha }, [SchemeSel] = { OPAQUE, baralpha, borderalpha } };
 
 
@@ -36,10 +36,15 @@ static const Rule rules[] = {
     { NULL,                  NULL,                "broken",          0,            1,           0,        -1 },
     { NULL,                  NULL,                "图片查看",        0,            1,           0,        -1 },
     { NULL,                  NULL,                "图片预览",        0,            1,           0,        -1 },
+    { "float",               NULL,                 NULL,             3,            1,           0,        -1 }, // 设置3号tag为浮动布局
     {"Microsoft-edge",       NULL,                 NULL,             1 << 9,       0,           0,        -1 },
-    {"Code",                 NULL,                 NULL,             1 << 10,      0,           0,        -1 },
+    {"Code",                 NULL,                 NULL,             1 << 10,      0,           0,        -1 }, // vscode
     {"AppRun",               NULL,                 NULL,             1 << 11,      1,           1,        -1 }, // 此处是navicat
     {"flameshot",            NULL,                 NULL,             0,            1,           0,        -1 },
+    {"et",                   NULL,                 NULL,             5,            0,           0,        -1 }, // wps-excel
+    {"wps",                  NULL,                 NULL,             5,            0,           0,        -1 }, // wps-文字
+    {"wpp",                  NULL,                 NULL,             5,            0,           0,        -1 }, // wps-ppt
+    {"pdf",                  NULL,                 NULL,             5,            0,           0,        -1 }, // wps-pdf
 };
 static const char *overviewtag = "OVERVIEW";
 static const Layout overviewlayout = { "",  overview };
@@ -110,13 +115,14 @@ static Key keys[] = {
     { MODKEY|Mod1Mask,     XK_Right,        resizewin,        {.ui = H_EXPAND} },        /* super ctrl right   |  调整窗口 */
 
     /* spawn + SHCMD 执行对应命令 */
-    { MODKEY,              XK_Return,       spawn,            SHCMD("~/dwm/scripts/app-starter.sh terminal") },
-    { MODKEY|ShiftMask,    XK_a,            spawn,            SHCMD("~/dwm/scripts/app-starter.sh flameshot") },
-    { MODKEY,              XK_p,            spawn,            SHCMD("~/dwm/scripts/app-starter.sh menu") },
-    { MODKEY,              XK_k,            spawn,            SHCMD("~/dwm/scripts/app-starter.sh screenkey") },
-    { MODKEY,              XK_l,            spawn,            SHCMD("~/dwm/scripts/app-starter.sh lock") },
-    { MODKEY|ShiftMask,    XK_Up,           spawn,            SHCMD("~/dwm/scripts/app-starter.sh set_vol up &") },
-    { MODKEY|ShiftMask,    XK_Down,         spawn,            SHCMD("~/dwm/scripts/app-starter.sh set_vol down &") },
+    { MODKEY|ShiftMask,    XK_q,            spawn,            SHCMD("./scripts/app-starter.sh killw") },
+    { MODKEY,              XK_Return,       spawn,            SHCMD("./scripts/app-starter.sh terminal") },
+    { MODKEY|ShiftMask,    XK_a,            spawn,            SHCMD("./scripts/app-starter.sh flameshot") },
+    { MODKEY,              XK_p,            spawn,            SHCMD("./scripts/app-starter.sh menu") },
+    { MODKEY,              XK_k,            spawn,            SHCMD("./scripts/app-starter.sh screenkey") },
+    { MODKEY,              XK_l,            spawn,            SHCMD("./scripts/app-starter.sh lock") },
+    { MODKEY|ShiftMask,    XK_Up,           spawn,            SHCMD("./scripts/app-starter.sh set_vol up &") },
+    { MODKEY|ShiftMask,    XK_Down,         spawn,            SHCMD("./scripts/app-starter.sh set_vol down &") },
 
     /* super key : 跳转到对应tag */
     /* super shift key : 将聚焦窗口移动到对应tag */
@@ -131,16 +137,16 @@ static Key keys[] = {
     TAGKEYS(XK_7, 6,  0,  0)
     TAGKEYS(XK_8, 7,  0,  0)
     TAGKEYS(XK_9, 8,  0,  0)
-    TAGKEYS(XK_c, 9,  "~/dwm/scripts/app-starter.sh chrome",    "~/dwm/scripts/app-starter.sh chrome")
-    TAGKEYS(XK_g, 10,  "~/dwm/scripts/app-starter.sh vscode",   "~/dwm/scripts/app-starter.sh vscode")
-    TAGKEYS(XK_n, 11,  "~/dwm/scripts/app-starter.sh navicat",  "~/dwm/scripts/app-starter.sh navicat")
-    TAGKEYS(XK_m, 12, "~/dwm/scripts/app-starter.sh music",     "~/dwm/scripts/app-starter.sh pavucontrol")
-    TAGKEYS(XK_w, 13, "~/dwm/scripts/app-starter.sh wechat",    "~/dwm/scripts/app-starter.sh wechat")
-    TAGKEYS(XK_d, 14, "~/dwm/scripts/app-starter.sh dingtalk",  "~/dwm/scripts/app-starter.sh dingtalk")
+    TAGKEYS(XK_c, 9,  "./scripts/app-starter.sh chrome",    "./scripts/app-starter.sh chrome")
+    TAGKEYS(XK_g, 10, "./scripts/app-starter.sh vscode",   "./scripts/app-starter.sh vscode")
+    TAGKEYS(XK_n, 11, "./scripts/app-starter.sh navicat",  "./scripts/app-starter.sh navicat")
+    TAGKEYS(XK_m, 12, "./scripts/app-starter.sh music",     "./scripts/app-starter.sh music")
+    TAGKEYS(XK_w, 13, "./scripts/app-starter.sh wechat",    "./scripts/app-starter.sh wechat")
+    TAGKEYS(XK_d, 14, "./scripts/app-starter.sh dingtalk",  "./scripts/app-starter.sh dingtalk")
 };
 static Button buttons[] = {
     /* click               event mask       button            function       argument  */
-   // { ClkStatusText,       0,               Button1,          spawn,         SHCMD("~/dwm/scripts/app-starter.sh terminal") }, // 左键        |  点击状态栏   |  打开float st
+   // { ClkStatusText,       0,               Button1,          spawn,         SHCMD("./scripts/app-starter.sh terminal") }, // 左键        |  点击状态栏   |  打开float st
     { ClkWinTitle,         0,               Button1,          hideotherwins, {0} },                                   // 左键        |  点击标题     |  隐藏其他窗口仅保留该窗口
     { ClkWinTitle,         0,               Button3,          togglewin,     {0} },                                   // 右键        |  点击标题     |  切换窗口显示状态
     { ClkTagBar,           0,               Button1,          view,          {0} },                                   // 左键        |  点击tag      |  切换tag

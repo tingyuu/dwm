@@ -19,13 +19,22 @@ print_mem() {
     mem_buffers=$(cat /proc/meminfo | grep "Buffers:"|awk '{print $2}')
     mem_cached=$(cat /proc/meminfo | grep -w "Cached:"|awk '{print $2}')
     men_usage_rate=$(((mem_total - mem_free - mem_buffers - mem_cached) * 100 / mem_total))
-	mem_icon="ﲭ"
+    mem_icon="ﲭ"
     mem_text=$(echo $men_usage_rate | awk '{printf "%02d%", $1}')
     text=" $mem_icon $mem_text "
     printf "%s%s%s" "$text" "$s2d_reset"
 }
 
 print_time() {
+    case "$(date '+%w')" in
+	  "1") weeks="周一" ;;
+	  "2") weeks="周二" ;;
+	  "3") weeks="周三" ;;
+	  "4") weeks="周四" ;;
+	  "5") weeks="周五" ;;
+	  "6") weeks="周六" ;;
+	  "0") weeks="周日" ;;
+    esac
     time_text="$(date '+%m/%d %H:%M')"
     case "$(date '+%I')" in
         "01") time_icon="" ;;
@@ -42,7 +51,7 @@ print_time() {
         "12") time_icon="" ;;
     esac
 
-    text=" $time_icon $time_text "
+    text=" $time_icon $time_text $weeks "
     printf "%s%s%s" "$text" "$s2d_reset"
 }
 
