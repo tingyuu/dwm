@@ -100,4 +100,4 @@ print_bat() {
 }
 
 # xsetroot -name "$(print_others)$(print_cpu)$(print_mem)$(print_time)$(print_vol)$(print_bat)"
-xsetroot -name "$(print_cpu )$(print_mem )$(print_time )$(print_vol)"
+xsetroot -name "$(print_cpu )$(print_mem )$(print_time )"
