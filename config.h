@@ -115,14 +115,14 @@ static Key keys[] = {
     { MODKEY|Mod1Mask,     XK_Right,        resizewin,        {.ui = H_EXPAND} },        /* super ctrl right   |  调整窗口 */
 
     /* spawn + SHCMD 执行对应命令 */
-    { MODKEY|ShiftMask,    XK_q,            spawn,            SHCMD("./scripts/app-starter.sh killw") },
-    { MODKEY,              XK_Return,       spawn,            SHCMD("./scripts/app-starter.sh terminal") },
-    { MODKEY|ShiftMask,    XK_a,            spawn,            SHCMD("./scripts/app-starter.sh flameshot") },
-    { MODKEY,              XK_p,            spawn,            SHCMD("./scripts/app-starter.sh menu") },
-    { MODKEY,              XK_k,            spawn,            SHCMD("./scripts/app-starter.sh screenkey") },
-    { MODKEY,              XK_l,            spawn,            SHCMD("./scripts/app-starter.sh lock") },
-    { MODKEY|ShiftMask,    XK_Up,           spawn,            SHCMD("./scripts/app-starter.sh set_vol up &") },
-    { MODKEY|ShiftMask,    XK_Down,         spawn,            SHCMD("./scripts/app-starter.sh set_vol down &") },
+    { MODKEY|ShiftMask,    XK_q,            spawn,            SHCMD("~/dwm/scripts/app-starter.sh killw") },
+    { MODKEY,              XK_Return,       spawn,            SHCMD("~/dwm/scripts/app-starter.sh terminal") },
+    { MODKEY|ShiftMask,    XK_a,            spawn,            SHCMD("~/dwm/scripts/app-starter.sh flameshot") },
+    { MODKEY,              XK_p,            spawn,            SHCMD("~/dwm/scripts/app-starter.sh menu") },
+    { MODKEY,              XK_k,            spawn,            SHCMD("~/dwm/scripts/app-starter.sh screenkey") },
+    { MODKEY,              XK_l,            spawn,            SHCMD("~/dwm/scripts/app-starter.sh lock") },
+    { MODKEY|ShiftMask,    XK_Up,           spawn,            SHCMD("~/dwm/scripts/app-starter.sh set_vol up &") },
+    { MODKEY|ShiftMask,    XK_Down,         spawn,            SHCMD("~/dwm/scripts/app-starter.sh set_vol down &") },
 
     /* super key : 跳转到对应tag */
     /* super shift key : 将聚焦窗口移动到对应tag */
@@ -137,16 +137,16 @@ static Key keys[] = {
     TAGKEYS(XK_7, 6,  0,  0)
     TAGKEYS(XK_8, 7,  0,  0)
     TAGKEYS(XK_9, 8,  0,  0)
-    TAGKEYS(XK_c, 9,  "./scripts/app-starter.sh chrome",    "./scripts/app-starter.sh chrome")
-    TAGKEYS(XK_g, 10, "./scripts/app-starter.sh vscode",   "./scripts/app-starter.sh vscode")
-    TAGKEYS(XK_n, 11, "./scripts/app-starter.sh navicat",  "./scripts/app-starter.sh navicat")
-    TAGKEYS(XK_m, 12, "./scripts/app-starter.sh music",     "./scripts/app-starter.sh music")
-    TAGKEYS(XK_w, 13, "./scripts/app-starter.sh wechat",    "./scripts/app-starter.sh wechat")
-    TAGKEYS(XK_d, 14, "./scripts/app-starter.sh dingtalk",  "./scripts/app-starter.sh dingtalk")
+    TAGKEYS(XK_c, 9,  "~/dwm/scripts/app-starter.sh chrome",    "~/dwm/scripts/app-starter.sh chrome")
+    TAGKEYS(XK_g, 10, "~/dwm/scripts/app-starter.sh vscode",    "~/dwm/scripts/app-starter.sh vscode")
+    TAGKEYS(XK_n, 11, "~/dwm/scripts/app-starter.sh navicat",   "~/dwm/scripts/app-starter.sh navicat")
+    TAGKEYS(XK_m, 12, "~/dwm/scripts/app-starter.sh music",     "~/dwm/scripts/app-starter.sh music")
+    TAGKEYS(XK_w, 13, "~/dwm/scripts/app-starter.sh wechat",    "~/dwm/scripts/app-starter.sh wechat")
+    TAGKEYS(XK_d, 14, "~/dwm/scripts/app-starter.sh dingtalk",  "~/dwm/scripts/app-starter.sh dingtalk")
 };
 static Button buttons[] = {
     /* click               event mask       button            function       argument  */
-   // { ClkStatusText,       0,               Button1,          spawn,         SHCMD("./scripts/app-starter.sh terminal") }, // 左键        |  点击状态栏   |  打开float st
+   // { ClkStatusText,       0,               Button1,          spawn,         SHCMD("~/dwm/scripts/app-starter.sh terminal") }, // 左键        |  点击状态栏   |  打开float st
     { ClkWinTitle,         0,               Button1,          hideotherwins, {0} },                                   // 左键        |  点击标题     |  隐藏其他窗口仅保留该窗口
     { ClkWinTitle,         0,               Button3,          togglewin,     {0} },                                   // 右键        |  点击标题     |  切换窗口显示状态
     { ClkTagBar,           0,               Button1,          view,          {0} },                                   // 左键        |  点击tag      |  切换tag
