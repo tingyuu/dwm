@@ -27,7 +27,7 @@ static const unsigned int alphas[][3]      = { [SchemeNorm] = { OPAQUE, baralpha
 /* 自定义tag名称 */
 /* 自定义特定实例的显示状态 */
 //            ﮸ 
-static const char *tags[] = { "", "" , "", "", "", "", "", "", "", "", "", "", "", "﬐", "" };
+static const char *tags[] = { "", "" , "", "", "", "", "", "", "", "", "", "", "", "﬐", "" };
 static const Rule rules[] = {
     /* class                 instance              title             tags mask     isfloating   noborder  monitor */
     {"lx-music-desktop",     NULL,                 NULL,             1 << 12,      1,           1,        -1 },
@@ -36,15 +36,14 @@ static const Rule rules[] = {
     { NULL,                  NULL,                "broken",          0,            1,           0,        -1 },
     { NULL,                  NULL,                "图片查看",        0,            1,           0,        -1 },
     { NULL,                  NULL,                "图片预览",        0,            1,           0,        -1 },
-    { "float",               NULL,                 NULL,             3,            1,           0,        -1 }, // 设置3号tag为浮动布局
     {"Microsoft-edge",       NULL,                 NULL,             1 << 9,       0,           0,        -1 },
     {"Code",                 NULL,                 NULL,             1 << 10,      0,           0,        -1 }, // vscode
     {"AppRun",               NULL,                 NULL,             1 << 11,      1,           1,        -1 }, // 此处是navicat
     {"flameshot",            NULL,                 NULL,             0,            1,           0,        -1 },
-    {"et",                   NULL,                 NULL,             5,            0,           0,        -1 }, // wps-excel
-    {"wps",                  NULL,                 NULL,             5,            0,           0,        -1 }, // wps-文字
-    {"wpp",                  NULL,                 NULL,             5,            0,           0,        -1 }, // wps-ppt
-    {"pdf",                  NULL,                 NULL,             5,            0,           0,        -1 }, // wps-pdf
+    {"et",                   NULL,                 NULL,             1 << 4,       0,           0,        -1 }, // wps-excel
+    {"wps",                  NULL,                 NULL,             1 << 4,       0,           0,        -1 }, // wps-文字
+    {"wpp",                  NULL,                 NULL,             1 << 4,       0,           0,        -1 }, // wps-ppt
+    {"pdf",                  NULL,                 NULL,             1 << 4,       0,           0,        -1 }, // wps-pdf
 };
 static const char *overviewtag = "OVERVIEW";
 static const Layout overviewlayout = { "",  overview };
@@ -146,7 +145,7 @@ static Key keys[] = {
 };
 static Button buttons[] = {
     /* click               event mask       button            function       argument  */
-   // { ClkStatusText,       0,               Button1,          spawn,         SHCMD("~/dwm/scripts/app-starter.sh terminal") }, // 左键        |  点击状态栏   |  打开float st
+    { ClkStatusText,       0,               Button2,          spawn,         SHCMD("~/dwm/scripts/app-starter.sh terminal") }, // 左键        |  点击状态栏   |  打开float st
     { ClkWinTitle,         0,               Button1,          hideotherwins, {0} },                                   // 左键        |  点击标题     |  隐藏其他窗口仅保留该窗口
     { ClkWinTitle,         0,               Button3,          togglewin,     {0} },                                   // 右键        |  点击标题     |  切换窗口显示状态
     { ClkTagBar,           0,               Button1,          view,          {0} },                                   // 左键        |  点击tag      |  切换tag

@@ -11,5 +11,5 @@ while true; do
 	done
 	range=${#files[@]}
 	((range)) && feh --bg-scale "${files[RANDOM % range]}"
-	sleep 15m
+	sleep 5m
 done

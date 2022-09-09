@@ -10,3 +10,4 @@ done &
 ./wallpaper.sh &
 
 picom &
+xfce4-power-manager &
