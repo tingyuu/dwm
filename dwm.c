@@ -1030,7 +1030,7 @@ drawbar(Monitor *m)
     }
     empty_w = m->ww - x - status_w - system_w; // 最后多加了一个w
     if (empty_w > 0) {
-        drw_setscheme(drw, scheme[SchemeHid]);
+        drw_setscheme(drw, scheme[SchemeNorm]); // 这里是绘制bar的空闲部分的颜色，Norm正常色，Hid较透明
         drw_rect(drw, x, 0, empty_w, bh, 1, 1);
     }
 
