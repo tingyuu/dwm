@@ -27,7 +27,7 @@ static const unsigned int alphas[][3]      = { [SchemeNorm] = { OPAQUE, baralpha
 /* 自定义tag名称 */
 /* 自定义特定实例的显示状态 */
 //            ﮸ 
-static const char *tags[] = { "", "" , "", "", "", "", "", "", "", "", "", "", "", "﬐", "" };
+static const char *tags[] = { "", "" , "", "", "", "", "", "", "", "", "", "", "", "﬐", "" };
 static const Rule rules[] = {
     /* class                 instance              title             tags mask     isfloating   noborder  monitor */
     {"lx-music-desktop",     NULL,                 NULL,             1 << 12,      1,           1,        -1 },
